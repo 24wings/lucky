@@ -1,0 +1,66 @@
+<textarea rows="4" nz-input [(ngModel)]="sql" placeholder="sql"></textarea> <br>
+<button nz-button nzType="primary" (click)="queryMeta()">查询</button>
+
+<div>
+    <nz-tag nzMode="closeable" [nzColor]="getRandomColor(field)" (nzOnClose)="onClose($event,i)" *ngFor="let field of fields ;let i= index" (click)="editField(field)">{{field.alias || field.fieldName}}</nz-tag>
+
+</div>
+
+<ng-container *ngIf="metaCom">
+    <app-meta-object [metaObject]="metaCom" [power]="power"></app-meta-object>
+</ng-container>
+
+<nz-modal [(nzVisible)]="editFieldVisible" [nzTitle]="selectedField?'编辑字段'+selectedField.fieldName:'编辑字段'" (nzOnCancel)="editFieldVisible=false" (nzOnOk)="editFieldVisible=false;confirmEditField()">
+    <ng-container *ngIf="selectedField">
+        <nz-form-item>
+            <nz-form-label style="margin-right: 53px;" [nzXs]="24 " [nzSm]="4 ">别名</nz-form-label>
+            <nz-form-control [nzXs]="24 " [nzSm]="16 ">
+                <nz-input-group nzSearch>
+                    <input [placeholder]="'别名'" nz-input [(ngModel)]="selectedField.alias" style="width:80%">
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label style="margin-right: 53px;" [nzXs]="24 " [nzSm]="4 ">权限</nz-form-label>
+            <nz-form-control [nzXs]="24 " [nzSm]="16 ">
+                <nz-input-group nzSearch>
+                    <nz-select [nzMaxMultipleCount]="10" style="width: 100%" nzMode="multiple" nzPlaceHolder="Please select" [(ngModel)]="selectedPowers">
+                        <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+                    </nz-select>
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label style="margin-right: 53px;" [nzXs]="24 " [nzSm]="4 ">校验</nz-form-label>
+            <nz-form-control [nzXs]="24 " [nzSm]="16 ">
+                <label nz-checkbox [nzChecked]="selectedField.valid.required">
+                    <span>必填</span>
+                  </label>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label style="margin-right: 53px;" [nzXs]="24 " [nzSm]="4 ">下标</nz-form-label>
+            <nz-form-control [nzXs]="24 " [nzSm]="16 ">
+                <nz-tag (click)="minIndex()">-</nz-tag> {{getIndex()}}
+                <nz-tag (click)="addIndex()">+</nz-tag>
+            </nz-form-control>
+        </nz-form-item>
+    </ng-container>
+</nz-modal>
+
+
+<nz-collapse [nzBordered]="false" *ngIf="metaCom">
+    <nz-collapse-panel [nzHeader]="'源码'" [nzActive]="sourcePanelActive">
+        <nz-tabset>
+            <nz-tab nzTitle="Typescript">
+                <pre>        {{getSource()}}</pre>
+            </nz-tab>
+            <nz-tab nzTitle="Java">
+                Content of Tab Pane 2
+            </nz-tab>
+            <nz-tab nzTitle="Dart">
+                Content of Tab Pane 3
+            </nz-tab>
+        </nz-tabset>
+    </nz-collapse-panel>
+</nz-collapse>

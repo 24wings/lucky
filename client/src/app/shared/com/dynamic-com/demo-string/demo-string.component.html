@@ -1,0 +1,34 @@
+<ng-container *ngIf="mode==ModeEnum.Create">
+    <app-field-dynamic [dataSet]="dataSet" [metaCom]="metaCom" [mode]="ModeEnum.Create" [field]="refField('code')" [value]="newDataItem.code" (valueChange)="changeProp($event,'code')" (doAction)="doAction($event)"></app-field-dynamic>
+    <div nz-row nzGutter="8">
+        <ng-container *ngFor="let field of requiredFields;let i= index">
+            <hr *ngIf="i==2">
+            <ng-container [ngSwitch]="field.type">
+                <app-field-dynamic [dataSet]="dataSet" *ngSwitchDefault [metaCom]="metaCom" [mode]="ModeEnum.Create" [field]="field" [value]="newDataItem[field.fieldName]" (valueChange)="changeProp($event,field.fieldName)" (doAction)="doAction($event)"></app-field-dynamic>
+            </ng-container>
+        </ng-container>
+    </div>
+    <div style="display: flex;text-align: center;margin-top:40px;">
+        <div style="flex:1" *ngFor="let action of currentCreateState.actions">
+            <button nz-button [nzType]="action.nzType" (click)="createFlowTo(action)">{{action.label}}</button>
+        </div>
+    </div>
+</ng-container>
+
+<!-- 更新模态框 -->
+<ng-container *ngIf="mode==ModeEnum.Update">
+    <ng-container *ngFor="let field of updateFields;let i= index">
+        <ng-container [ngSwitch]="field.type">
+            <app-field-dynamic [dataSet]="dataSet" *ngSwitchDefault [metaCom]="metaCom" [mode]="ModeEnum.Update" [field]="field" [value]="selectedData[field.fieldName]" (valueChange)="changeSelectProp($event,field.fieldName)"></app-field-dynamic>
+        </ng-container>
+    </ng-container>
+    <div style="display: flex;text-align: center;margin-top:40px;">
+        <div style="flex:1">
+            <button nz-button [nzType]="'default'" (click)="updateCancel()">取消</button>
+        </div>
+        <div style="flex:1">
+            <button nz-button [nzType]="'primary'" (click)="update()">更新</button>
+        </div>
+    </div>
+
+</ng-container>

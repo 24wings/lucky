@@ -1,0 +1,9 @@
+<div style="margin-top:80px;">
+    <input nz-input placeholder="会员手机" [(ngModel)]="mobile" style="width:200px;margin-right:20px">
+    <input nz-input placeholder="会员卡号" [(ngModel)]="mealCardNo" style="width:200px;margin-right:20px">
+    <input nz-input style="width:200px;margin-right:20px" placeholder="会员名称" [(ngModel)]="name">
+    <nz-select style="width: 200px;margin-right:20px" [(ngModel)]="singleValue" nzShowSearch>
+        <nz-option *ngFor="let option of groupsOptions" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+    </nz-select>
+    <button nz-button nzType="primary" (click)="query()">查询</button>
+</div>

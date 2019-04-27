@@ -1,0 +1,21 @@
+<div style="display: flex;margin-top: 80px;">
+    <div style="flex:1">
+        <nz-select style="width: 120px;" [(ngModel)]="fromCity" nzAllowClear nzPlaceHolder="出发城市">
+            <nz-option [nzValue]="city.code" [nzLabel]="city.name" *ngFor="let city of citys"></nz-option>
+        </nz-select>
+    </div>
+    <div style="flex:1">
+        <nz-select style="width: 120px;" [(ngModel)]="toCity" nzAllowClear nzPlaceHolder="目标城市">
+            <nz-option [nzValue]="city.code" [nzLabel]="city.name" *ngFor="let city of citys"></nz-option>
+        </nz-select>
+    </div>
+    <div style="flex:1">
+        <nz-date-picker [(ngModel)]="fromDate" [nzFormat]="dateFormat" [nzPlaceHolder]="'出发日期'" (nzOnOk)="submitChange($event)" nzShowTime></nz-date-picker>
+    </div>
+    <div style="flex:1">
+        <nz-date-picker [(ngModel)]="toDate" [nzFormat]="dateFormat" [nzPlaceHolder]="'返程日期'" (nzOnOk)="submitToDate($event)" nzShowTime></nz-date-picker>
+    </div>
+    <div style="flex:1">
+        <button nz-button nzType="primary" (click)="query()">查询</button>
+    </div>
+</div>

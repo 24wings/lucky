@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="main">
+        <div class="top text-center">
+            <div class="desc">新发地市场移动餐车售卖系统</div>
+        </div>
+        <div class="login-form">
+            <div>
+                <nz-input-group [nzSuffix]="suffixTemplate" nzPrefixIcon="anticon anticon-user">
+                    <input type="text" nz-input placeholder="用户名" [(ngModel)]="username">
+                </nz-input-group>
+                <ng-template #suffixTemplate>
+                    <i class="anticon anticon-close-circle" (click)="username=null" *ngIf="username"></i>
+                </ng-template>
+            </div>
+            <div style="margin:20px auto;">
+                <nz-input-group [nzSuffix]="suffixTemplate" nzPrefixIcon="anticon anticon-user">
+                    <input type="password" nz-input placeholder="密码" [(ngModel)]="password">
+                </nz-input-group>
+                <ng-template #suffixTemplate>
+                    <i class="anticon anticon-close-circle" (click)="password=null" *ngIf="password"></i>
+                </ng-template>
+            </div>
+            <div>
+            </div>
+            <div style="display: FLEX;
+            justify-content: space-around;
+            margin: 20px;">
+                <!-- <a class="login-form-forgot" routerLink="/admin/forgot-password" class="login-form-forgot">忘记密码</a>
+                <a routerLink="/admin/signup">注册</a> -->
+            </div>
+            <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'" (click)="login()">登录</button>
+        </div>
+    </div>
+    <!-- footer -->
+    <div class="footer golbal-footer ">
+        <span class="copyright">
+            北京梭日科技发展有限公司  400-910-1007
+    </span>
+    </div>
+</div>

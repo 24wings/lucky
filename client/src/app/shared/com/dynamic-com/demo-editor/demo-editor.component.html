@@ -1,0 +1,17 @@
+<h1>自定义编辑器</h1>
+
+<div nz-row>
+    <div nz-col nzSpan="12">
+        <app-field-dynamic [field]="getField('amount')" (valueChange)="valueObject[getField('amount').fieldName]=$event" [mode]="ModeEnum.Create" [metaCom]="metaCom"></app-field-dynamic>
+    </div>
+    <div nz-col nzSpan="12">
+        <app-field-dynamic [field]="getField('mobile')" (valueChange)="valueObject[getField('mobile').fieldName]=$event" [mode]="ModeEnum.Create" [metaCom]="metaCom"></app-field-dynamic>
+    </div>
+    <div nz-col nzSpan="12">
+        <!-- <nz-input [(ngModel)]=""></nz-input> -->
+        {{valueObject | json}}
+    </div>
+
+</div>
+
+<button nzType="primary" nz-button (click)="count()">按钮</button>

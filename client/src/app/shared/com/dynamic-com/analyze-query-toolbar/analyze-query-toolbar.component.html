@@ -1,0 +1,15 @@
+<div style="margin-top:80px;">
+    <nz-range-picker [nzFormat]="dateFormat" style="margin-right:40px" [(ngModel)]="dateRange" nzShowTime></nz-range-picker>
+    <nz-select style="width: 200px;margin-right:20px" [(ngModel)]="selectedGroup" nzShowSearch>
+        <nz-option *ngFor="let option of groupsOptions" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+    </nz-select>
+
+    <button nz-button nzType="primary" (click)="query()">查询</button>
+</div>
+
+<ng-container *ngIf="state==ModeEnum.Create">
+    <nz-drawer style="margin-right:400px;" [nzBodyStyle]="{height: 'calc(100vh - 53px)', overflow: 'auto', 'padding-bottom':'53px' }" [nzPlacement]="'right'" [nzWidth]="730" [nzVisible]="state==ModeEnum.Create||state==ModeEnum.Update" [nzTitle]="state==ModeEnum.Create? '添加':'更新'"
+        (nzOnClose)="state=ModeEnum.Show;">
+        <meta-editor [metaCom]="metaCom" [mode]="ModeEnum.Create"></meta-editor>
+    </nz-drawer>
+</ng-container>

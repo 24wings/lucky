@@ -1,0 +1,9 @@
+<div nz-row>
+    <div nz-col nzSpan="6">
+        <app-meta-object [metaObject]="orgMetaCom" [power]="0" (onAction)="doAction($event)" ></app-meta-object>
+    </div>
+    <div nz-col nzSpan="18">
+        <app-meta-object [metaObject]="roleMetaCom" [power]="power" #roleMetaObjectComponent></app-meta-object>
+
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<ng-container *ngIf="metaObject">
+    <app-meta-object (onAction)="doAction($event)" [metaObject]="metaObject" [power]="power" #metaObjectComponent></app-meta-object>
+</ng-container>
+<!-- 自定义的创建 -->
+<ng-container *ngIf="orderCreateMetaCom">
+    <app-meta-object (onAction)="orderCreateAction($event)" [metaObject]="orderCreateMetaCom" [power]="power"></app-meta-object>
+</ng-container>
+<ng-container *ngIf="chargeModalVisible">
+    <nz-modal nzTitle="充值金额" [nzVisible]="chargeModalVisible" (nzOnCancel)="chargeModalVisible=false" (nzOnOk)="chargeModalVisible=false;charge()">
+        会员: {{chargeMember?.name}}
+
+        <br>
+        <nz-input-number [(ngModel)]="chargeAmount" [nzMin]="0" [nzFormatter]="rmbFormmatter" [nzParser]="rmbParser"></nz-input-number>
+    </nz-modal>
+</ng-container>
+
+<ng-container *ngIf="chargeAllModalVisible">
+    <nz-modal nzTitle="全部充值金额" [nzVisible]="chargeAllModalVisible" (nzOnCancel)="chargeAllModalVisible=false" (nzOnOk)="chargeAllModalVisible=false;chargeAll()">
+        <nz-input-number [(ngModel)]="chargeAllAmount" [nzFormatter]="rmbFormmatter" [nzParser]="rmbParser"></nz-input-number>
+    </nz-modal>
+</ng-container>
+<ng-container *ngIf="disabledCardModalVisible">
+    <nz-modal nzTitle="禁用" [nzVisible]="disabledCardModalVisible" (nzOnCancel)="disabledCardModalVisible=false" (nzOnOk)="disabledCardModalVisible=false;">
+        <nz-input-number [(ngModel)]="chargeAllAmount" [nzFormatter]="rmbFormmatter" [nzParser]="rmbParser"></nz-input-number>
+    </nz-modal>
+</ng-container>
+<!-- <button nz-button [disabled]="isNoneCheck" nzType="danger" *ngIf="isDel" (click)="showDeleteConfirm()">删除</button> -->

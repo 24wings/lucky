@@ -1,0 +1,24 @@
+<div style="margin-top:100px;">
+    <nz-form-item *ngIf="user">
+        <nz-form-label style="margin-right: 53px;" [nzXs]="24 " [nzSm]="4 ">昵称</nz-form-label>
+        <nz-form-control [nzXs]="24 " [nzSm]="16 ">
+            <input [placeholder]="'昵称'" nz-input [(ngModel)]="user.name">
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngIf="user">
+        <nz-form-label style="margin-right: 53px;" [nzXs]="24 " [nzSm]="4 ">用户名</nz-form-label>
+        <nz-form-control [nzXs]="24 " [nzSm]="16 ">
+            <input [placeholder]="'昵称'" nz-input disabled="disabled" [(ngModel)]="user.userName">
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngIf="user">
+        <nz-form-label style="margin-right: 53px;" [nzXs]="24 " [nzSm]="4 ">密码</nz-form-label>
+        <nz-form-control [nzXs]="24 " [nzSm]="16 ">
+            <input [placeholder]="'密码'" nz-input type="password" [(ngModel)]="user.password">
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngIf="user" style="text-align:center;">
+        <!-- <nz-form-label style="margin-right: 53px;" [nzXs]="24 " [nzSm]="4 "></nz-form-label> -->
+        <button nz-button nzType="primary" (click)="modify()">提交 </button>
+    </nz-form-item>
+</div>
