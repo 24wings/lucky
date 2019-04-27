@@ -17,7 +17,8 @@ import { CustomUrl } from "app/libs/meta-ui/util/meta/CustomUrl";
     objectCode: EntityEnum.Org, objectName: "组织管理",
     data: {
         presetConditions: () => [
-            { field: "orgId", compare: "=", value: JSON.parse(localStorage.getItem('employee') ? localStorage.getItem('employee') : '{}').orgId, andOr: "or" }]
+            // { field: "orgId", compare: "=", value: JSON.parse(localStorage.getItem('employee') ? localStorage.getItem('employee') : '{}').orgId, andOr: "or" }
+        ]
     },
     view: { pageSize: 200 }, lifeCycle: { afterCreateSuccess: (data: OrgManage) => '' }
 })

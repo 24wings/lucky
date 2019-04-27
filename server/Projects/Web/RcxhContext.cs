@@ -76,6 +76,7 @@ namespace Wings.Projects.Web
             var dvos = Assembly.GetExecutingAssembly().GetTypes().Where(t => (t.GetCustomAttribute(typeof(TableAttribute)) != null ||
              t.GetCustomAttribute(typeof(TreeListViewAttribute)) != null) && t.Namespace.StartsWith(_namespace_)).ToArray();
             Type[] paramTypes = dvos;
+            this.Set<User>();
             // tables = new Dictionary<string, DbSet<object>> ();
             foreach (Type type in paramTypes)
             {
